@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Otaku Cart | Home</title>
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.min.css">
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MangaCart Logo">
+        <span>Otaku Cart</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="{{ url_for('login') }}">Login</a></li>
+        <li><a href="{{ url_for('catalog') }}">Catalog</a></li>
+        <li><a href="{{ url_for('register') }}">Register</a></li>
+        <li><a href="{{ url_for('view_cart') }}">Cart</a></li>
+      </ul>
+
+      <!-- Extra CTA Login Button -->
+      <a href="{{ url_for('login') }}" class="btn">Login</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="hero">
+    <div class="hero-content">
+      <h1>Your Ultimate Anime Manga Store</h1>
+      <p>Explore, collect and cherish the world of manga and anime merchandise.</p>
+      <div class="hero-buttons">
+        <a href="{{ url_for('catalog') }}" class="btn">Shop Now</a>
+        <a href="{{ url_for('register') }}" class="btn secondary">Join Us</a>
+      </div>
+    </div>
+
+    <!-- Hero Images -->
+    <div class="hero-images">
+      <img src="{{ url_for('static', filename='images/hero-1.jpg') }}" alt="Manga Display 1">
+      <img src="{{ url_for('static', filename='images/hero-2.jpg') }}" alt="Manga Display 2">
+    </div>
+  </main>
+
+</body>
+</html>

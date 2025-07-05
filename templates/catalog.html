@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OtakuCart | Catalog</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/catalog.css') }}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.min.css">
+</head>
+<body>
+
+  <!-- Navbar just like homepage -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="/static/images/logo.png" alt="OtakuCart Logo">
+        <span>Otaku Cart</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/catalog">Catalog</a></li>
+        <li><a href="/register">Register</a></li>
+        <li><a href="/cart">Cart</a></li>
+      </ul>
+      <a href="/logout" class="btn">Logout</a>
+    </nav>
+  </header>
+
+  <!-- Product Grid -->
+  <main class="catalog-container">
+    {% for product in products %}
+      <div class="card">
+        <img src="{{ url_for('static', filename='images/' ~ product[6]) }}" alt="{{ product[1] }}">
+        <h3>{{ product[1] }}</h3>
+        <p><strong>Genre:</strong> {{ product[2] }}</p>
+        <p><strong>Author:</strong> {{ product[3] }}</p>
+        <p class="price">₹{{ product[4] }}</p>
+        <p class="stock">{{ 'In Stock' if product[5]|int > 0 else 'Out of Stock' }}</p>
+        
+        {% if product[5]|int > 0 %}
+          <form action="/add_to_cart" method="post">
+            <input type="hidden" name="product_id" value="{{ product[0] }}">
+            <button type="submit">Add to Cart</button>
+          </form>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </main>
+
+</body>
+</html>

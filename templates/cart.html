@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cart.css') }}">
+</head>
+<body>
+    <h2>🛒 My Cart</h2>
+    <div class="cart-items">
+        {% for item in cart_items %}
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/' + item[2]) }}" alt="{{ item[0] }}">
+            <h3>{{ item[0] }}</h3>
+            <p>Quantity: {{ item[3] }}</p>
+            <p>Price: ₹{{ item[1] }}</p>
+
+            <!-- 🔼 Add Button -->
+            <form action="/increase_quantity" method="post" style="display:inline;">
+                <input type="hidden" name="product_id" value="{{ item[4] }}">
+                <button type="submit">➕</button>
+            </form>
+
+            <!-- 🔽 Remove Button -->
+            <form action="/decrease_quantity" method="post" style="display:inline;">
+                <input type="hidden" name="product_id" value="{{ item[4] }}">
+                <button type="submit">➖</button>
+            </form>
+
+            <!-- ❌ Full Remove Button -->
+            <form action="/remove_from_cart" method="post" style="display:inline;">
+                <input type="hidden" name="product_id" value="{{ item[4] }}">
+                <button type="submit">🗑️</button>
+            </form>
+        </div>
+        {% endfor %}
+        <h3>Total: ₹{{ total_price }}</h3>
+
+    </div>
+</body>
+</html>
